@@ -7,6 +7,8 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -100,5 +102,19 @@ public class SampleRestController {
 		//				데이터가 반드시 HTTP메서드에 포함되어있어야함(GET방식 사용불가)
 		logger.debug("info() 호출");
 		logger.debug(""+vo);
+	}
+	
+	// http://localhost:8088/sample/doG
+	@RequestMapping(value = "/doG", method = RequestMethod.GET)
+	public ResponseEntity<Void> doG() {
+		logger.debug("doG() 호출");
+		return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+	}
+	
+	// http://localhost:8088/sample/doH
+	@RequestMapping(value = "/doH", method = RequestMethod.GET)
+	public ResponseEntity<String> doH() {
+		logger.debug("doH() 호출");
+		return new ResponseEntity<String>("ITWILL BUSAN",HttpStatus.NOT_FOUND);
 	}
 }
